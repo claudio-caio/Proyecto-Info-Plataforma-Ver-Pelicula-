@@ -1,0 +1,167 @@
+.movie {
+  height: calc(100vh - 64px);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+
+  &__dark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: #000;
+    opacity: 0.7;
+  }
+
+  > .ant-row {
+    height: 100%;
+    display: flex;
+    align-items: center;
+  }
+
+  &__poster {
+    height: 80%;
+    margin-bottom: 10px;
+    div {
+      height: 100%;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: contain;
+      margin-right: 10px;
+    }
+  }
+
+  &__info {
+    color: #fff;
+    // margin-left: 1vw;
+
+    &-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      h1 {
+        color: #fff;
+        margin: 0;
+        // font-size: 60px;
+
+        span {
+          font-size: 20px;
+          margin-left: 10px;
+          opacity: 0.5;
+        }
+      }
+    }
+
+    &-content {
+      margin-top: 50px;
+
+      h3 {
+        color: #fff;
+        font-weight: bold;
+        font-size: 24px;
+      }
+    }
+
+    &-trailer {
+      justify-content: center;
+      padding-bottom: 10px;
+      button {
+        height: 100%;
+        background-color: transparent;
+        color: #fff;
+        border: 0;
+        font-size: 30px;
+
+        &:hover,
+        &:focus,
+        &:active {
+          background-color: transparent;
+          color: turquoise;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 1100px) {
+  .orden1 {
+    order: 2;
+  }
+  .orden2 {
+    order: 1;
+    padding: 4vw;
+    padding-top: 6vw;
+    height: 40%;
+  }
+
+  .movie {
+    height: 100%;
+    &__dark {
+      height: 100vw;
+    }
+    &__poster {
+      height: 35%;
+      div {
+        height: 40vw;
+        margin-top: 15vw;
+        background-position: center;
+      }
+    }
+    &__info {
+      height: 50%;
+    }
+  }
+}
+
+@media (max-width: 766px) {
+  .orden1 {
+    order: 2;
+  }
+  .orden2 {
+    order: 1;
+    padding: 4vw;
+    padding-top: 6vw;
+    height: 40%;
+  }
+
+  .movie {
+    height: 100%;
+    // height: 80vw;
+    &__dark {
+      height: 100vw;
+    }
+    &__poster {
+      height: 35%;
+      div {
+        height: 35vw;
+        margin-top: -30vw;
+        background-position: right;
+        margin-right: -20vw;
+      }
+    }
+    &__info {
+      height: 50%;
+    }
+  }
+}
+
+@media (max-width: 500px) {
+  .movie {
+    height: 100%;
+    &__dark {
+      height: 110%;
+    }
+    &__poster {
+      height: 35%;
+      div {
+        height: 35vw;
+        margin-top: -30vw;
+      }
+    }
+    &__info {
+      height: 50%;
+    }
+  }
+}
