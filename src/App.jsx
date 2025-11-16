@@ -1,37 +1,28 @@
 import React from 'react'
 import { Layout } from 'antd'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-//Componentes
-import MenuTop from "./components/MenuTop/MenuTop"
 
+// Componentes
+import { MenuTop } from './components'
 
 // Pages
-import Home from './pages/home';
-import NewMoviews from './pages/new-movie'
-import Popular from './pages/popular'
-import Search from './pages/search/'
-import Movie from './pages/movie'
-import Error404 from './pages/Error404/error404.jsx'
+import { Home, NewMovie, Popular, Search, Movie, Error404 } from './pages/'
 
 
-
-
-
-
-function App() {
-  const {Header,Content } = Layout
+const App = () => {
+  const { Header, Content } = Layout
 
   return (
     <Layout>
       <Router>
-        <Header style={{ zIndex: 1}}>
+        <Header style={{ zIndex: 1 }}>
           <MenuTop />
         </Header>
 
         <Content>
           <Routes>
-            <Route path='/' element={<Home />} />
-            <Route path="/new-movies" element={<NewMoviews />} />
+            <Route path="/" element={<Home />} />
+            <Route path="/new-movies" element={<NewMovie />} />
             <Route path="/popular" element={<Popular />} />
             <Route path="/search" element={<Search />} />
             <Route path="/movie/:id" element={<Movie />} />
@@ -40,7 +31,7 @@ function App() {
         </Content>
       </Router>
     </Layout>
-  );
+  )
 }
 
 export default App

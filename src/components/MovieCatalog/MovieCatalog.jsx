@@ -1,12 +1,12 @@
 import React from "react";
-import { Col, Card } from "antd";
-import { EyeOutlined } from '@ant-design/icons';
-import { Link } from "react-router-dom";
+import { Col } from "antd";
+import MovieCard from "./MovieCard.jsx";
 
 import "./MovieCatalog.scss";
 
-export default function MovieCatalog(props) {
-  const {
+
+const MovieCatalog = (props) => {
+ const {
     movies: { results,total_results }
   } = props;
 
@@ -31,23 +31,4 @@ export default function MovieCatalog(props) {
 
 }
 
-function MovieCard(props) {
-  const {
-    movie: { id, title, poster_path }
-  } = props;
-  const { Meta } = Card;
-  const posterPath = `https://image.tmdb.org/t/p/original/${poster_path}`;
-
-  return (
-    <Link to={`/movie/${id}`}>
-      <Card
-        hoverable
-          style={{ width: 240 }}
-        cover={<img alt={title} src={posterPath} />}
-        actions={[<EyeOutlined /> ]}
-      >
-        <Meta title={title} />
-      </Card>
-    </Link>
-  );
-}
+export default MovieCatalog

@@ -3,12 +3,14 @@ import { Layout } from "antd";
 
 import "./Footer.scss";
 
-export default function Footer() {
+const Footer = () => {
   const { Footer } = Layout;
-
+  
   return (
-    <Footer className="footer">
+     <Footer className="footer">
       <p>Proyecto Movies App</p>
     </Footer>
-  );
+  )
 }
+
+export default Footer

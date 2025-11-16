@@ -1,12 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Row, Col } from "antd";
-import { URL_API, API } from "../utils/contants";
-import Footer from "../components/Footer";
-import Loading from "../components/Loading";
-import MovieCatalog from "../components/MovieCatalog";
-import Pagination from "../components/Pagination";
+import { URL_API, API } from "../../utils/contants";
+import { Loading, MovieCatalog, Pagination, Footer } from "../../components";
 
-export default function Popular() {
+const Popular = () => {
   const [movieList, setMovieList] = useState([]);
   const [page, setPage] = useState(1);
 
@@ -20,26 +17,24 @@ export default function Popular() {
     })();
   }, [page]);
 
-  const onChangePage = page => {
+  const onChangePage = (page) => {
     setPage(page);
   };
 
   return (
     <>
       <Row>
-        <Col span="24" style={{ textAlign: "center", marginTop: 25}}>
-          <h1 style={{ fontSize: 35, fontWeight: "bold" }}>
-            Populares
-          </h1>
+        <Col span={24} style={{ textAlign: "center", marginTop: 25 }}>
+          <h1 style={{ fontSize: 35, fontWeight: "bold" }}>Populares</h1>
         </Col>
       </Row>
 
-      
       {movieList.results ? (
         <Row>
-          <Row span="24" style={{ justifyContent: "center"}}>
+          <Row span="24" style={{ justifyContent: "center" }}>
             <MovieCatalog movies={movieList} />
           </Row>
+
           <Col span="24">
             <Pagination
               currentPage={movieList.page}
@@ -53,6 +48,7 @@ export default function Popular() {
           <Loading />
         </Col>
       )}
+
       <Row>
         <Col span={24}>
           <Footer />
@@ -60,4 +56,7 @@ export default function Popular() {
       </Row>
     </>
   );
-}
+};
+
+export default Popular;
+

@@ -1,48 +1,25 @@
 import React from "react";
-import { Carousel, Button } from "antd";
-import { Link } from "react-router-dom";
-import Loading from "../Loading";
+import { Carousel} from "antd";
+
+import Loading from "../Loading/Loading.jsx";
+import Movie from "./Movie";
 
 import "./SliderMovies.scss";
 
-
-export default function SliderMovies(props) {
-  const { movies } = props;
-
+const SliderMovies = ({ movies }) => {
   if (movies.loading || !movies.result) {
     return <Loading />;
   }
 
   const { results } = movies.result;
+
   return (
     <Carousel autoplay className="slider-movies">
-      {results.map(movie => (
+      {results.map((movie) => (
         <Movie key={movie.id} movie={movie} />
       ))}
     </Carousel>
   );
-}
+};
 
-function Movie(props) {
-  const {
-    movie: { id, backdrop_path, title, overview }
-  } = props;
-  const backdropPath = `https://image.tmdb.org/t/p/original${backdrop_path}`;
-
-  return (
-    <div
-      className="slider-movies__movie"
-      style={{ backgroundImage: `url('${backdropPath}')` }}
-    >
-      <div className="slider-movies__movie-info">
-        <div>
-          <h2>{title}</h2>
-          <p>{overview}</p>
-          <Link to={`/movie/${id}`}>
-            <Button type="primary">Ver más</Button>
-          </Link>
-        </div>
-      </div>
-    </div>
-  );
-}
+export default SliderMovies;

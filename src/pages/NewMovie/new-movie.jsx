@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { Row, Col } from "antd";
-import { URL_API, API } from "../utils/contants";
-import Footer from "../components/Footer";
-import Loading from "../components/Loading";
-import MovieCatalog from "../components/MovieCatalog";
-import Pagination from "../components/Pagination";
+import { URL_API, API } from "../../utils/contants";
 
-export default function NewMovies() {
+// Components
+import { Loading, MovieCatalog, Pagination, Footer } from "../../components";
+
+const NewMovies = () => {
   const [movieList, setMovieList] = useState([]);
   const [page, setPage] = useState(1);
 
@@ -20,27 +19,27 @@ export default function NewMovies() {
     })();
   }, [page]);
 
-  const onChangePage = page => {
+  const onChangePage = (page) => {
     setPage(page);
   };
 
   return (
     <>
       <Row>
-        <Col span="24" style={{ textAlign: "center", marginTop: 25}}>
+        <Col span={24} style={{ textAlign: "center", marginTop: 25 }}>
           <h1 style={{ fontSize: 35, fontWeight: "bold" }}>
-            Ultimos lanzamientos
+            Últimos lanzamientos
           </h1>
         </Col>
       </Row>
 
-      
       {movieList.results ? (
         <Row>
-          <Row span="24" style={{ justifyContent: "center"}}>
+          <Row span="24" style={{ justifyContent: "center" }}>
             <MovieCatalog movies={movieList} />
           </Row>
-          <Col span="24">
+
+          <Col span={24}>
             <Pagination
               currentPage={movieList.page}
               totalItems={movieList.total_results}
@@ -49,10 +48,11 @@ export default function NewMovies() {
           </Col>
         </Row>
       ) : (
-        <Col span="24">
+        <Col span={24}>
           <Loading />
         </Col>
       )}
+
       <Row>
         <Col span={24}>
           <Footer />
@@ -60,4 +60,6 @@ export default function NewMovies() {
       </Row>
     </>
   );
-}
+};
+
+export default NewMovies;

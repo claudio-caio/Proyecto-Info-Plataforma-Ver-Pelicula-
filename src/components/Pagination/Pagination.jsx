@@ -3,8 +3,8 @@ import Pagination from "rc-pagination";
 
 import "./Pagination.scss";
 
-export default function PaginationMovies(props) {
-  const { currentPage, totalItems, onChangePage } = props;
+const PaginationMovies = (props) => {
+   const { currentPage, totalItems, onChangePage } = props;
 
   return (
     <Pagination
@@ -16,3 +16,6 @@ export default function PaginationMovies(props) {
     />
   );
 }
+
+export default PaginationMovies
+
