@@ -1,34 +1,20 @@
 import React from "react";
-import { Col } from "antd";
-import MovieCard from "./MovieCard.jsx";
+import MovieCard from "./MovieCard";
 
-import "./MovieCatalog.scss";
+const MovieCatalog = ({ movies: { results = [] } = {}, favorites = [], onToggleFavorite }) => {
+  return (
+    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6 w-full">
+      {results.map((movie) => (
+        <MovieCard
+          key={movie.id}
+          movie={movie}
+          isFavorite={favorites.some((f) => f.id === movie.id)}
+          onToggleFavorite={onToggleFavorite}
+        />
+      ))}
+    </div>
+  );
+};
 
+export default MovieCatalog;
 
-const MovieCatalog = (props) => {
- const {
-    movies: { results,total_results }
-  } = props;
-
-  if(total_results > 4 ){
-    return results.map(movie => (
-
-      <Col key={movie.id} xs={24} sm={12} md={8} lg={6} className="movie-catalog">
-        <MovieCard movie={movie} />
-      </Col>
-      
-    ));      
-  }
-  else{
-    return results.map(movie => (
-
-      <Col key={movie.id} xs={24} sm={12} lg={8} className="movie-catalog">
-        <MovieCard movie={movie} />
-      </Col>
-      
-    ));       
-  }
-
-}
-
-export default MovieCatalog

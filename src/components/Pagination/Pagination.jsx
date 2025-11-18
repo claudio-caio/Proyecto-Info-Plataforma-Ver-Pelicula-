@@ -1,21 +1,24 @@
 import React from "react";
 import Pagination from "rc-pagination";
+import { LeftOutlined, RightOutlined } from "@ant-design/icons";
+import "./index.css";
 
-import "./Pagination.scss";
-
-const PaginationMovies = (props) => {
-   const { currentPage, totalItems, onChangePage } = props;
-
+const PaginationMovies = ({ currentPage, totalItems, onChangePage }) => {
   return (
-    <Pagination
-      className="pagination"
-      current={currentPage}
-      total={totalItems}
-      pageSize={20}
-      onChange={onChangePage}
-    />
+    <div className="flex justify-center mt-10">
+      <Pagination
+        className="netflix-pagination"
+        current={currentPage}
+        total={totalItems}
+        pageSize={2000}
+        onChange={onChangePage}
+        showSizeChanger={false} 
+        /* FLECHAS */
+        prevIcon={<LeftOutlined className="text-white text-lg" />}
+        nextIcon={<RightOutlined className="text-white text-lg" />}
+      />
+    </div>
   );
-}
+};
 
-export default PaginationMovies
-
+export default PaginationMovies;

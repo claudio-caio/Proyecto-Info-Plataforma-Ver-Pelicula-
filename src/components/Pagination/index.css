@@ -1,0 +1,51 @@
+@reference "tailwindcss";
+
+@layer components {
+
+  /* Wrapper */
+  .netflix-pagination {
+    @apply flex items-center gap-2 select-none;
+  }
+
+  /* Generic item */
+  .netflix-pagination li {
+    @apply bg-[#141414] text-white/90 border border-[#333] rounded-md min-w-10 h-10 px-3 inline-flex items-center justify-center cursor-pointer transition-colors duration-150;
+  }
+
+  /* Buttons inside items */
+  .netflix-pagination li button {
+    @apply text-white/90 leading-none;
+  }
+
+  /* Hover */
+  .netflix-pagination li:hover {
+    @apply bg-[#1f1f1f] border-[#3d3d3d] text-white;
+  }
+
+  /* Active page */
+  .netflix-pagination li.rc-pagination-item-active {
+    @apply bg-[#E50914] border-[#291516] text-white font-semibold shadow-sm;
+  }
+
+  /* Disabled state */
+  .netflix-pagination li.rc-pagination-disabled {
+    @apply opacity-40 cursor-not-allowed bg-[#141414] border-[#333] text-white/50;
+  }
+
+  /* Prev/Next icons normalization */
+  .netflix-pagination .rc-pagination-prev,
+  .netflix-pagination .rc-pagination-next {
+    @apply min-w-10 h-10 rounded-md;
+  }
+
+  /* Ocultar botones de salto (... prev y ... next) */
+  .netflix-pagination .rc-pagination-jump-prev,
+  .netflix-pagination .rc-pagination-jump-next {
+    display: none !important;
+  }
+
+  /* Focus visible for a11y */
+  .netflix-pagination li:focus-within {
+    @apply outline-none ring-2 ring-[#E50914]/40 ring-offset-0;
+  }
+}

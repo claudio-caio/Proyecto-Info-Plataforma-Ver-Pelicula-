@@ -1,37 +1,36 @@
-import React from 'react'
-import { Layout } from 'antd'
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import './index.css';
+import { Layout } from "antd";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+//components
+import { MenuTop, Footer } from "./components";
+//pages
+import { Home, NewMovies, Popular, Search, Movie, Error404 } from "./pages";
 
-// Componentes
-import { MenuTop } from './components'
-
-// Pages
-import { Home, NewMovie, Popular, Search, Movie, Error404 } from './pages/'
-
-
-const App = () => {
-  const { Header, Content } = Layout
+function App() {
+  const { Content } = Layout;
 
   return (
-    <Layout>
-      <Router>
-        <Header style={{ zIndex: 1 }}>
-          <MenuTop />
-        </Header>
+    <Router>
+      <div className="bg-[#141414] text-white">
+        {/* Navbar fijo arriba */}
+        <MenuTop />
 
-        <Content>
+        <Content >
           <Routes>
+            {/* Tus rutas */}
             <Route path="/" element={<Home />} />
-            <Route path="/new-movies" element={<NewMovie />} />
-            <Route path="/popular" element={<Popular />} />
-            <Route path="/search" element={<Search />} />
-            <Route path="/movie/:id" element={<Movie />} />
+            <Route path='/NewMovies' element={<NewMovies/>}/>
+            <Route path="/Popular" element={<Popular />} />
+            <Route path="/Search" element={<Search />} /> 
+            <Route path="/Movie/:id" element={<Movie />} /> 
             <Route path="*" element={<Error404 />} />
+            {/* <Route path="/login" element={<Login />} /> */}
           </Routes>
         </Content>
-      </Router>
-    </Layout>
-  )
+        <Footer/>
+      </div>
+    </Router>
+  );
 }
 
-export default App
+export default App;

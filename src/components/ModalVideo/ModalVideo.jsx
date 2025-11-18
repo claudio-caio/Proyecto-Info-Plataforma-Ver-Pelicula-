@@ -1,63 +1,50 @@
-import React, { useState, useEffect } from "react";
-import { Modal } from "antd";
+import React from "react";
 import ReactPlayer from "react-player";
 
-import "./ModalVideo.scss";
 
-const ModalVideo = (props) => {
-  const { videoKey, videoPlatform, setIsVisibleModal, isOpen, setEstado, estado } = props;
-  const [urlVideo, setUrlVideo] = useState("");
 
-  console.log("traile", videoKey);
+const ModalVideo = ({ videoKey, videoPlatform, isOpen, setIsVisibleModal }) => {
+  if (!isOpen || !videoKey) return null;
 
-  const handelClosed = () => {
-    setEstado(false);
-    setTimeout(() => {
+  // Calcula URL según plataforma
+  const urlVideo =
+  videoPlatform === "YouTube"
+    ? `https://www.youtube.com/embed/${videoKey}`
+    : videoPlatform === "Vimeo"
+    ? `https://vimeo.com/${videoKey}`
+    : null;
+
+  if (!urlVideo) return null;
+ console.log(urlVideo)
+  const handleClose = () => {
+    if (typeof setIsVisibleModal === "function") {
       setIsVisibleModal(false);
-      setUrlVideo(""); // Clean URL on close
-    }, 300);
+    }
   };
 
-useEffect(() => {
-  if (!videoKey) return;
-
-  switch (videoPlatform) {
-    case "YouTube":
-      // ReactPlayer necesita formato embed
-      setUrlVideo(`https://www.youtube.com/embed/${videoKey}`);
-      break;
-
-    case "Vimeo":
-      // Vimeo también usa player embed
-      setUrlVideo(`https://player.vimeo.com/video/${videoKey}`);
-      break;
-
-    default:
-      break;
-  }
-}, [videoKey, videoPlatform]);
-
-
-
   return (
-    <Modal
-      className="modal-video"
-      open={isOpen}
-      centered
-      onCancel={handelClosed}
-      footer={false}
-      width={800}
-    >
-      {urlVideo && (
-        <ReactPlayer
-          url={urlVideo}
-          controls
-          playing={estado}
-          width="100%"
-          height="450px"
-        />
-      )}
-    </Modal>
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-70">
+      <div className="relative w-full max-w-3xl p-4 bg-gray-900 rounded-lg shadow-lg">
+        <button
+          onClick={handleClose}
+          className="absolute top-2 right-2 text-white text-2xl font-bold hover:text-red-500"
+        >
+          &times;
+        </button>
+
+        <div className="w-full aspect-video">
+          <iframe
+            width="100%"
+            height="100%"
+            src={`https://www.youtube.com/embed/${videoKey}`}
+            title="YouTube video player"
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+/>
+        </div>
+      </div>
+    </div>
   );
 };
 
