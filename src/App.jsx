@@ -3,7 +3,7 @@ import { Layout } from "antd";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 //components
 import { MenuTop, Footer } from "./components";
-//pages
+//pages 
 import { Home, NewMovies, Popular, Search, Movie, Error404 } from "./pages";
 
 function App() {
@@ -24,7 +24,9 @@ function App() {
             <Route path="/Search" element={<Search />} /> 
             <Route path="/Movie/:id" element={<Movie />} /> 
             <Route path="*" element={<Error404 />} />
-            {/* <Route path="/login" element={<Login />} /> */}
+            {/* <Route path="/login" element={<Login />} /> 
+            ver si la puedo implementar 
+            */}
           </Routes>
         </Content>
         <Footer/>
