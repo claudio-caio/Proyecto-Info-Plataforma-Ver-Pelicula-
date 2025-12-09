@@ -32,7 +32,7 @@ const RenderMovie = ({ movieInfo }) => {
     <div
       className="
         w-full min-h-screen bg-cover bg-center relative 
-        px-4 sm:px-6 lg:px-12 py-15
+        px-4 sm:px-6 lg:px-12 py-30
       "
       style={{ backgroundImage: `url('${backdropPath}')` }}
     >
