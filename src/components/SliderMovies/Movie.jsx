@@ -1,7 +1,7 @@
 import { Button } from "antd";
 import { Link } from "react-router-dom";
 
-const Movie = ({ movie }) => {
+const Movie = ({ movie, isAuthenticated = false }) => {
   const { id, backdrop_path, title, overview } = movie;
   const backdropPath = `https://image.tmdb.org/t/p/original${backdrop_path}`;
 
@@ -20,7 +20,7 @@ const Movie = ({ movie }) => {
 >
 
       {/* Overlay degradado tipo Netflix */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+      <div className="absolute inset-0 bg-linear-to-t from-black/80 to-transparent"></div>
 
 
       {/* Contenido centrado */}

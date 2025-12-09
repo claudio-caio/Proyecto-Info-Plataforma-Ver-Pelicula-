@@ -4,7 +4,7 @@ import { Loading } from "../index";
 import { Carousel } from "antd";
 import { LeftOutlined, RightOutlined } from "@ant-design/icons";
 
-const SliderMovies = ({ movies }) => {
+const SliderMovies = ({ movies, isAuthenticated = false }) => {
   const carouselRef = useRef();
 
   const isLoading = movies?.loading || movies?.isLoading;
@@ -41,7 +41,7 @@ const SliderMovies = ({ movies }) => {
       {/* Carrusel */}
       <Carousel ref={carouselRef} dots={false} autoplay>
         {results.map((movie) => (
-          <Movie key={movie.id} movie={movie} />
+          <Movie key={movie.id} movie={movie} isAuthenticated={isAuthenticated} />
         ))}
       </Carousel>
 

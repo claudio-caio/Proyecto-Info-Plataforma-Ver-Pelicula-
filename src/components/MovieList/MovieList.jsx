@@ -4,7 +4,7 @@ import { CaretRightOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";
 import { Loading } from "..";
 
-const MovieList = ({ title, movies }) => {
+const MovieList = ({ title, movies, isAuthenticated = false }) => {
   // movies puede venir como: { loading, result } (antiguo useFetch)
   // o directamente como data de react-query (movieList)
   const isLoading = movies?.loading || movies?.isLoading;

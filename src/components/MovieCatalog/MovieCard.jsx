@@ -1,14 +1,24 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { EyeOutlined, HeartOutlined, HeartFilled } from "@ant-design/icons";
+import { message } from "antd";
 
-const MovieCard = ({ movie, isFavorite = false, onToggleFavorite }) => {
+const MovieCard = ({ movie, isFavorite = false, onToggleFavorite, isAuthenticated = false }) => {
   const { id, title, poster_path } = movie;
   const posterPath = `https://image.tmdb.org/t/p/original${poster_path}`;
+  const navigate = useNavigate();
 
   const handleToggle = (e) => {
     e.preventDefault();
     e.stopPropagation();
+    
+    // Validar autenticación
+    if (!isAuthenticated) {
+      message.warning('Inicia sesión para guardar favoritos');
+      navigate('/login');
+      return;
+    }
+    
     if (onToggleFavorite) onToggleFavorite(movie);
   };
 

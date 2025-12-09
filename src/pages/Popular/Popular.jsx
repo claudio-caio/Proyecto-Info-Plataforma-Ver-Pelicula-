@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Row, Col, Alert, Button } from "antd";
 import { Loading, MovieCatalog, Pagination} from "../../components/index";
 import { usePopularMovies, useFavorites, useAddFavorite, useRemoveFavorite } from "../../hooks/useMovies";
+import { AuthContext } from "../../context/auth";
 
 
 const Popular = () => {
+  const { isAuthenticated } = useContext(AuthContext);
   const [page, setPage] = useState(1);
 
   const { data: movieList, isLoading, isError, error, refetch } = usePopularMovies(page);
@@ -54,7 +56,7 @@ const Popular = () => {
       ) : (
         <Row>
           <Row span="24" style={{ justifyContent: "center" }}>
-            <MovieCatalog movies={movieList} favorites={favorites} onToggleFavorite={handleToggleFavorite} />
+            <MovieCatalog movies={movieList} favorites={favorites} onToggleFavorite={handleToggleFavorite} isAuthenticated={isAuthenticated} />
           </Row>
           <Col span="24">
             <Pagination

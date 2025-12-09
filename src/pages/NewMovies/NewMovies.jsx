@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 //components
 import { Loading, MovieCatalog, Pagination} from "../../components/index";
 import { useNowPlaying, useFavorites, useAddFavorite, useRemoveFavorite } from "../../hooks/useMovies";
+import { AuthContext } from "../../context/auth";
 
 
 const NewMovies = () => {
+  const { isAuthenticated } = useContext(AuthContext);
   const [page, setPage] = useState(1);
 
   const { data: movieList, isLoading } = useNowPlaying(page);
@@ -36,7 +38,7 @@ const NewMovies = () => {
       ) : movieList?.results ? (
         <div className="flex flex-col items-center gap-8">
           {/* MovieCatalog */}
-          <MovieCatalog movies={movieList} favorites={favorites} onToggleFavorite={handleToggleFavorite} />
+          <MovieCatalog movies={movieList} favorites={favorites} onToggleFavorite={handleToggleFavorite} isAuthenticated={isAuthenticated} />
 
           {/* Paginación */}
           <Pagination

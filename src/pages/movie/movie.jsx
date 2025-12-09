@@ -32,7 +32,7 @@ const RenderMovie = ({ movieInfo }) => {
       {/* Contenido */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 py-16 flex flex-col md:flex-row items-start gap-10">
         {/* Poster */}
-        <div className="w-full md:w-1/3 flex-shrink-0">
+        <div className="w-full md:w-1/3 shrink-0">
           <div
             className="w-full h-[450px] bg-cover bg-center rounded-md shadow-xl"
             style={{ backgroundImage: `url('https://image.tmdb.org/t/p/original${poster_path}')` }}

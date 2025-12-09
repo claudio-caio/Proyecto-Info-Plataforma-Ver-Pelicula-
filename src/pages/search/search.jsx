@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Col, Input, Alert, Button } from "antd";
 import { useLocation, useNavigate } from "react-router-dom";
 import queryString from "query-string";
@@ -7,8 +7,10 @@ import queryString from "query-string";
 import { MovieCatalog,  Pagination, Loading } from "../../components/index";
 import { useSearchMovies, useFavorites, useAddFavorite, useRemoveFavorite } from "../../hooks/useMovies";
 import { useForm } from "../../hooks/useForm";
+import { AuthContext } from "../../context/auth";
 
 const Search = () => {
+  const { isAuthenticated } = useContext(AuthContext);
   const location = useLocation();
   const navigate = useNavigate();
   const { q } = queryString.parse(location.search);
@@ -58,11 +60,11 @@ const Search = () => {
   return (
     <div className="bg-[#141414] min-h-screen text-white flex flex-col">
       {isLoading ? (
-        <div className="flex-grow flex items-center justify-center">
+        <div className="grow flex items-center justify-center">
           <Loading />
         </div>
       ) : (
-        <div className="flex-grow flex items-center justify-center mb-4 py-10">
+        <div className="grow flex items-center justify-center mb-4 py-10">
           <Col xs={24} sm={20} md={16} lg={12} className="px-4">
             <h1 className="text-3xl font-bold text-center mb-6">
               Busca tu Película
@@ -121,6 +123,7 @@ const Search = () => {
             movies={movieList}
             favorites={favorites}
             onToggleFavorite={handleToggleFavorite}
+            isAuthenticated={isAuthenticated}
           />
           <div className="mt-8 flex justify-center">
             <Pagination
